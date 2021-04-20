@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head', {title:'Home'}) %>
+<body>
+    <%- include('./partials/header') %>
+    <% results.forEach(result => { %>
+        
+        <div class="<%= result.characterDirection %>">
+            <h2><%= result.character %></h2>
+            <p><%= result.quote %></p>
+            <img src="<%= result.image %>" alt="">
+            <form action="/add" method="POST">
+                <input type="hidden" name="character" value="<%= result.character %>" >
+                <input type="hidden" name="quote" value="<%= result.quote %>">
+                <input type="hidden" name="image" value="<%= result.image %>">
+                <input type="submit" value="favor character">
+            </form>
+        </div>
+    
+        
+    
+    <% }) %>   
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head', {title:'Favorites'}) %>
+<body>
+    <%- include('./partials/header') %>
+    <% results.forEach(result => { %>
+        
+        <div class="<%= result.characterDirection %>">
+            <h2><%= result.character %></h2>
+            <p><%= result.quote %></p>
+            <img src="<%= result.image %>" alt="">
+            <form action="/character/<%= result.id %>" method="GET">
+                <input type="hidden" name="character">
+                <input type="hidden" name="quote">
+                <input type="hidden" name="image">
+                <input type="hidden" name="result.characterDirection">
+                <input type="submit" value="View Details">
+            </form>
+        </div>
+    
+        
+    
+    <% }) %>
+</body>
+</html>

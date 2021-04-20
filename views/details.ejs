@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head', {title:'Details'}) %>
+</head>
+
+<body>
+    <%- include('./partials/header') %>
+    <% results.forEach(result=> { %>
+
+        <div class="<%= result.characterDirection %>">
+            <h2>
+                <%= result.character %>
+            </h2>
+            <p>
+                <%= result.quote %>
+            </p>
+            <img src="<%= result.image %>" alt="">
+            <form action="/character/<%= result.id %>?_method=PUT" method="POST">
+                <input type="text" name="quote" value="<%= result.quote %>">
+
+                <input type="submit" value="update">
+            </form>
+        </div>
+
+
+
+        <% }) %>
+</body>
+
+</html>
