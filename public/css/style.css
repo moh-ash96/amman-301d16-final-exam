@@ -2,6 +2,27 @@
     background-color: #62C8E4;
     color: #fefb1e;
     font-family: sans-serif;
-    display: flex;
-    flex-wrap: wrap;
 }
+ #container{
+     display: flex;
+     flex-wrap: wrap;
+ }
+ p{
+    width: 167px;
+    font-size: 13px;
+ }
+ h2{
+     font-size: 19px;
+ }
+ img{
+     width: 200px;
+ }
+ .Left{
+    margin-right: 10px;
+    /* width: 50%;  */
+}   
+ .Right{
+     margin-right: 10px;
+     width: 50%;
+ }
+ 

@@ -3,9 +3,11 @@
     <%- include('./partials/head', {title:'Favorites'}) %>
 <body>
     <%- include('./partials/header') %>
-    <% results.forEach(result => { %>
-        
-        <div class="<%= result.characterDirection %>">
+    <div id="container">
+
+        <% results.forEach(result => { %>
+            
+            <div class="<%= result.characterDirection %>">
             <h2><%= result.character %></h2>
             <p><%= result.quote %></p>
             <img src="<%= result.image %>" alt="">
@@ -20,6 +22,7 @@
     
         
     
-    <% }) %>
-</body>
+        <% }) %>
+    </div>
+    </body>
 </html>

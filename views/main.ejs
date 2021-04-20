@@ -3,9 +3,12 @@
     <%- include('./partials/head', {title:'Home'}) %>
 <body>
     <%- include('./partials/header') %>
-    <% results.forEach(result => { %>
-        
-        <div class="<%= result.characterDirection %>">
+
+    <div id="container">
+
+        <% results.forEach(result => { %>
+            
+            <div class="<%= result.characterDirection %>">
             <h2><%= result.character %></h2>
             <p><%= result.quote %></p>
             <img src="<%= result.image %>" alt="">
@@ -16,9 +19,10 @@
                 <input type="submit" value="favor character">
             </form>
         </div>
-    
         
-    
+        
+        
     <% }) %>   
+</div>
 </body>
 </html>
