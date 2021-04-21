@@ -4,5 +4,5 @@ CREATE TABLE quotes(
     quote VARCHAR(255),
     character VARCHAR(255),
     image VARCHAR(255),
-    characterDirection VARCHAR(255)
+    character_direction VARCHAR(255)
 );

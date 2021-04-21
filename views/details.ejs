@@ -8,29 +8,39 @@
 <body>
 
     <%- include('./partials/header') %>
-    <div id="container">
 
-        <% results.forEach(result=> { %>
-            
-        <div class="<%= result.characterDirection %>">
-            <h2>
-                <%= result.character %>
-            </h2>
-            <p>
-                <%= result.quote %>
-            </p>
-            <img src="<%= result.image %>" alt="">
-            <form action="/character/<%= result.id %>?_method=PUT" method="POST">
-                <input type="text" name="quote" value="<%= result.quote %>">
+        <div id="det">
 
-                <input type="submit" value="update">
-            </form>
+            <% results.forEach(result=> { %>
+
+
+                <div class="details-card">
+                    <h2>
+                        <%= result.character %>
+                    </h2>
+                    <p>
+                        <%= result.quote %>
+                    </p>
+                    <img src="<%= result.image %>" alt="">
+                    <form action="/character/<%= result.id %>?_method=PUT" method="POST" class="upd-form">
+                        <textarea name="quote" rows="10" cols="50">
+                            <%= result.quote %>
+                        </textarea>
+
+                        <input type="submit" value="update" class="upd-btn">
+                    </form>
+
+                    <form action="/character/<%=result.id%>?_method=DELETE" method="POST" class="del-form">
+                        <input type="submit" value="Delete" class="del-btn">
+                    </form>
+                </div>
+
+
+
+
+                <% }) %>
+
         </div>
-        
-        
-        
-        <% }) %>
-    </div>
 </body>
 
 </html>

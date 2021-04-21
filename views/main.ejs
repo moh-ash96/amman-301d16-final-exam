@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head', {title:'Home'}) %>
-<body>
-    <%- include('./partials/header') %>
+<%- include('./partials/head', {title:'Home'}) %>
 
-    <div id="container">
+    <body>
+        <%- include('./partials/header') %>
 
-        <% results.forEach(result => { %>
-            
-            <div class="<%= result.characterDirection %>">
-            <h2><%= result.character %></h2>
-            <p><%= result.quote %></p>
-            <img src="<%= result.image %>" alt="">
-            <form action="/add" method="POST">
-                <input type="hidden" name="character" value="<%= result.character %>" >
-                <input type="hidden" name="quote" value="<%= result.quote %>">
-                <input type="hidden" name="image" value="<%= result.image %>">
-                <input type="submit" value="favor character">
-            </form>
-        </div>
-        
-        
-        
-    <% }) %>   
-</div>
-</body>
+            <div id="container-home">
+
+                <% results.forEach(result=> { %>
+                    <div class="card">
+                        <img src="<%= result.image %>" alt="">
+                        <h2>
+                            <%= result.character %>
+                        </h2>
+                        <p>
+                            <%= result.quote %>
+                        </p>
+                        <form action="/add" method="POST" class="add-btn">
+                            <input type="hidden" name="character" value="<%= result.character %>">
+                            <input type="hidden" name="quote" value="<%= result.quote %>">
+                            <input type="hidden" name="image" value="<%= result.image %>">
+                            <input type="hidden" name="character_direction" value="<%= result.character_direction %>">
+                            <input type="submit" value="Favor character">
+                        </form>
+                    </div>
+
+
+
+                    <% }) %>
+            </div>
+    </body>
+
 </html>

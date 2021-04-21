@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 
 // Express middleware
 // Utilize ExpressJS functionality to parse the body of the request
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 // Specify a directory for static resources
 app.use(express.static('./public'));
 
@@ -36,70 +36,74 @@ app.post('/add', addToFavorites);
 app.get('/favorite-quotes', getFavorites);
 app.get('/character/:id', getDetails);
 app.put('/character/:id', updateDetails);
-// app.post('/add', favorChar);
+app.delete('/character/:id', deleteChar);
 
 
 
 
 // callback functions
 // -- WRITE YOUR CALLBACK FUNCTIONS FOR THE ROUTES HERE --
-function getHome(req, res){
+function getHome(req, res) {
     const url = 'https://thesimpsonsquoteapi.glitch.me/quotes?count=10';
-    superagent.get(url).set('User-agent', '1.0').then(result=>{
-        result.body.map(quotes=>{
-            let newQuote = new Quotes(quotes)
-            
-        })
-        res.render('main',{results : result.body});
-        // res.send('hi')
+    superagent.get(url).set('User-agent', '1.0').then(result => {
+        let newQuote = result.body.map(quotes => new Quotes(quotes))
+        res.render('main', { results: newQuote });
     })
-    
+
 }
 
-function addToFavorites(req, res){
-    const {character, quote, image, characterDirection } = req.body;
-    const sql = 'INSERT INTO quotes (quote, character, image, characterDirection) VALUES ($1, $2, $3, $4);';
-    const values = [quote, character, image, characterDirection];
-    client.query(sql, values).then(result=>{
-        console.log(result.rows);
+function addToFavorites(req, res) {
+    const { character, quote, image, character_direction } = req.body;
+    const sql = 'INSERT INTO quotes (quote, character, image, character_direction) VALUES ($1, $2, $3, $4);';
+    const values = [quote, character, image, character_direction];
+    client.query(sql, values).then(() => {
         res.redirect('/favorite-quotes')
-    }).catch(error=>(console.log(error)))
+    }).catch(error => (console.log(error)));
 }
 
-function getFavorites(req, res){
+function getFavorites(req, res) {
     const sql = 'SELECT * FROM quotes;';
-    client.query(sql).then(result=>{
-        res.render('favorites', {results: result.rows})
-    })
+    client.query(sql).then(result => {
+        res.render('favorites', { results: result.rows })
+        // console.log(result.rows[0].image);
+    }).catch(error => console.log(error))
 }
 
-function getDetails(req, res){
+function getDetails(req, res) {
     const sql = 'SELECT * FROM quotes WHERE id=$1;';
     const id = req.params.id;
-    client.query(sql, [id]).then((result)=>{
-        res.render('details', {results: result.rows});
+    client.query(sql, [id]).then((result) => {
+        res.render('details', { results: result.rows });
     })
 
 }
-function updateDetails(req, res){
+
+function updateDetails(req, res) {
     const sql = 'UPDATE quotes SET quote=$1 WHERE id=$2;';
     const id = req.params.id;
-    const {quote} = req.body;
+    const { quote } = req.body;
     const values = [quote, id];
-    client.query(sql, values).then(()=>{
+    client.query(sql, values).then(() => {
         res.redirect('/favorite-quotes')
     })
 }
 
+function deleteChar(req, res) {
+    const id = req.params.id;
+    const sql = 'DELETE FROM quotes WHERE id=$1;';
+    client.query(sql, [id]).then(() => {
+        res.redirect('/favorite-quotes');
+    });
+}
 
 // helper functions
-function Quotes(data){
-    this.quote = data.quote;
-    this.character = data.character;
-    this.image = data.image;
-    this.characterDirection= data.characterDirection;
+function Quotes(quotes) {
+    this.quote = quotes.quote;
+    this.character = quotes.character;
+    this.image = quotes.image;
+    this.character_direction = quotes.characterDirection;
 }
 // app start point
 client.connect().then(() =>
     app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
-).catch(error=>console.log(error));
+).catch(error => console.log(error));

@@ -1,28 +1,138 @@
+html, body{
+    width: 100%;
+    overflow-x: hidden;
+}
+
 *{
     background-color: #62C8E4;
     color: #fefb1e;
     font-family: sans-serif;
 }
+
+header{
+    display: flex;
+    background-color: #16a085;
+    justify-content: space-between;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+}
+header img{
+    width: 255px;
+}
+nav, ul, li{
+    background-color: #16a085;
+    list-style: none;
+    display: inline-block;
+    margin-right: 17px;
+    margin-top: 12px;
+    font-size: 21px;
+}
+a{
+    /* text-decoration: none; */
+    background-color: #16a085;
+}
  #container{
+     width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-auto-flow: column;
+    margin-top: 160px;
+ }
+ #container-home{
      display: flex;
      flex-wrap: wrap;
+     justify-content: center;
+     margin-top: 160px;
  }
  p{
-    width: 167px;
     font-size: 13px;
+    background-color:  #16a085;
  }
  h2{
      font-size: 19px;
+     background-color:  #16a085;
  }
  img{
-     width: 200px;
+     width: 79px;
+     background-color:  #16a085;
  }
- .Left{
-    margin-right: 10px;
-    /* width: 50%;  */
-}   
- .Right{
-     margin-right: 10px;
-     width: 50%;
+ .card{
+    background-color: #16a085;
+    margin-top: 27px;
+    margin-left: 36px;
+    width: 264px;
+    padding: 36px;
  }
- 
+ /* .card-fav{
+    background-color: #16a085;
+    margin-top: 27px;
+    margin-left: 36px;
+    width: 264px;
+    padding: 36px;
+ } */
+ .add-btn{
+     background-color: #16a085;
+ }
+
+.Left{
+    margin-top: 27px;
+    margin-left: 40px;
+    padding: 36px;
+   background-color:  #16a085;
+   display: flex;
+    grid-column-start: 1;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.Right{
+    margin-top: 27px;
+    margin-left: 36px;
+    margin-right: 40px;
+    padding: 36px;
+    display: flex;
+    grid-column-start: 2;
+    flex-direction: column;
+    background-color: #16a085;
+    align-items: flex-end;
+ }
+ #det{
+    display: flex;
+    margin-top: 39px;
+    width: 30%;
+    flex-direction: column;
+    background-color: #16a085;
+    margin: auto;
+    margin-top: 163px;
+    padding-bottom: 30px;
+ }
+
+ .details-card{
+     background-color: #16a085;
+     display: flex;
+     flex-direction: column;
+     width: 75%;
+    align-self: center;
+ }
+
+ .upd-form, .del-form{
+     background-color: #16a085;
+ }
+ fieldset{
+     background-color: #16a085;
+     height: 147px;
+    font-size: 12px;
+ }
+ .upd-btn, .del-btn{
+    background-color: #16a085;
+    width: 127px;
+    margin-bottom: 4px;
+    margin-top: 6px;
+ }
+ footer{
+    background-color: #16a085;
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+ }
